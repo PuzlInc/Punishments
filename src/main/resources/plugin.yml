@@ -1,0 +1,18 @@
+author: Puzl
+description: Punishments
+main: com.puzlinc.punishments.Punishments
+name: Punishments
+version: '1.0'
+commands:
+  kick:
+    description: kick
+  ban:
+    description: ban
+  mute:
+    description: mute
+  unban:
+    description: unban
+  unmute:
+    description: unmute
+  history:
+    description: history
