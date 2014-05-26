@@ -29,7 +29,6 @@ public class PunishmentManager {
 
     public static final int PUNISHMENT_EXPIRE_NEVER = -1;
     public static final int PUNISHMENT_EXPIRED = 0;
-    private static final String TABLE = "punishments";
 
     private int nextId = 1;
 
@@ -211,8 +210,10 @@ public class PunishmentManager {
         this.config = config;
         this.database = database;
 
+        String table = config.getMysqlTable();
+
         String sqlCreate =
-                "CREATE TABLE IF NOT EXISTS `" + TABLE + "` (" +
+                "CREATE TABLE IF NOT EXISTS `" + table + "` (" +
                 "  `id` INT NOT NULL AUTO_INCREMENT," +
                 "  `type` VARCHAR(45) NOT NULL," +
                 "  `target` VARCHAR(45) NOT NULL," +
@@ -223,7 +224,7 @@ public class PunishmentManager {
                 "  `reason` VARCHAR(45) NULL," +
                 "  PRIMARY KEY (`id`))";
 
-        String sqlGetNextId = "SELECT MAX(id) AS max FROM " + TABLE;
+        String sqlGetNextId = "SELECT MAX(id) AS max FROM " + table;
 
         try {
             PreparedStatement statement = database.getConnection().prepareStatement(sqlCreate);
@@ -235,10 +236,10 @@ public class PunishmentManager {
                 nextId = rs.getInt("max")+1;
             }
 
-            sqlQueryAll = "SELECT * FROM " + TABLE +" WHERE expires <> 0 AND expires > UNIX_TIMESTAMP()";
-            sqlQueryTarget = "SELECT * FROM " + TABLE +" WHERE target = ?";
-            sqlInsert = "INSERT INTO " + TABLE + "(`type`, `target`, `admin`, `created`, `expires`, `server`, `reason`) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            sqlUpdate = "UPDATE " + TABLE + " SET expires = ? WHERE id = ?";
+            sqlQueryAll = "SELECT * FROM " + table +" WHERE expires <> 0 AND expires > UNIX_TIMESTAMP()";
+            sqlQueryTarget = "SELECT * FROM " + table +" WHERE target = ?";
+            sqlInsert = "INSERT INTO " + table + "(`type`, `target`, `admin`, `created`, `expires`, `server`, `reason`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            sqlUpdate = "UPDATE " + table + " SET expires = ? WHERE id = ?";
 
             updateBatch = database.getConnection().prepareStatement(sqlInsert);
         } catch (SQLException e) {

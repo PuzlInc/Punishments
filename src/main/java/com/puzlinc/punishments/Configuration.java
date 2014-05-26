@@ -34,6 +34,7 @@ public class Configuration {
     private String mysqlUsername;
     private String mysqlPassword;
     private String mysqlDatabase;
+    private String mysqlTable;
 
     private String serverName;
 
@@ -54,6 +55,7 @@ public class Configuration {
         mysqlUsername = config.getString("mysql.username");
         mysqlPassword = config.getString("mysql.password");
         mysqlDatabase = config.getString("mysql.database");
+        mysqlTable = config.getString("mysql.table");
 
         serverName = config.getString("server-name");
     }
@@ -76,6 +78,10 @@ public class Configuration {
 
     public String getMysqlDatabase() {
         return mysqlDatabase;
+    }
+
+    public String getMysqlTable() {
+        return mysqlTable;
     }
 
     public String getServerName() {

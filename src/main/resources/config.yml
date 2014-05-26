@@ -3,5 +3,6 @@ mysql:
   port: 3306
   username: ''
   password: ''
-  database: ''
+  database: 'minecraft'
+  table: 'punishments'
 server-name: ''
