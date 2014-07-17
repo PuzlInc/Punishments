@@ -37,6 +37,7 @@ public class Configuration {
     private String mysqlTable;
 
     private String serverName;
+
     private String syncInterval;
 
     public Configuration(Punishments plugin) {
@@ -59,7 +60,7 @@ public class Configuration {
         mysqlTable = config.getString("mysql.table");
 
         serverName = config.getString("server-name");
-        syncInterval = config.getString("sync-interval");
+        syncInterval = config.getString("sync-interval", "1m");
     }
 
     public String getMysqlHostname() {
