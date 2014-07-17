@@ -54,8 +54,8 @@ public class CommandHandler implements CommandExecutor {
                     }
 
                     String reason = null;
-                    if (args.length == 2) {
-                        reason = args[1];
+                    if (args.length >= 2) {
+                        reason = Util.argsToString(args, 1, args.length);
                     }
 
                     PunishmentManager.Punishment punishment = manager.addPunishment(
@@ -90,11 +90,12 @@ public class CommandHandler implements CommandExecutor {
                     String reason = null;
                     long length = manager.PUNISHMENT_EXPIRE_NEVER;
                     if (args.length >= 2) {
-                        length = System.currentTimeMillis() + Util.lengthToMiliseconds(args[1]);
-                        reason = args[1];
-
-                        if (args.length == 3) {
-                            reason = args[1];
+                        long givenTime = Util.lengthToMiliseconds(args[1]);
+                        if (givenTime != 0) {
+                            length = System.currentTimeMillis() + givenTime;
+                            reason = Util.argsToString(args, 2, args.length);
+                        } else {
+                            reason = Util.argsToString(args, 1, args.length);
                         }
                     }
 
@@ -133,11 +134,12 @@ public class CommandHandler implements CommandExecutor {
                     String reason = null;
                     long length = manager.PUNISHMENT_EXPIRE_NEVER;
                     if (args.length >= 2) {
-                        length = System.currentTimeMillis() + Util.lengthToMiliseconds(args[1]);
-                        reason = args[1];
-
-                        if (args.length == 3) {
-                            reason = args[1];
+                        long givenTime = Util.lengthToMiliseconds(args[1]);
+                        if (givenTime != 0) {
+                            length = System.currentTimeMillis() + givenTime;
+                            reason = Util.argsToString(args, 2, args.length);
+                        } else {
+                            reason = Util.argsToString(args, 1, args.length);
                         }
                     }
 

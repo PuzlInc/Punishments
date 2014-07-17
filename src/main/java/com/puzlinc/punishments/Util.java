@@ -50,4 +50,14 @@ public class Util {
         }
         return seconds * 1000;
     }
+
+    public static String argsToString(String[] args, int start, int end) {
+        StringBuilder builder = new StringBuilder();
+        for (int i=start;i<end;i++) {
+            builder.append(args);
+            builder.append(" ");
+        }
+        builder.deleteCharAt(builder.length()-1);
+        return builder.toString();
+    }
 }
