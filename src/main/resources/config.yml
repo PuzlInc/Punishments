@@ -6,3 +6,4 @@ mysql:
   database: 'minecraft'
   table: 'punishments'
 server-name: ''
+sync-interval: 1m

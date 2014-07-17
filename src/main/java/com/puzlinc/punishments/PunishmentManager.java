@@ -257,7 +257,7 @@ public class PunishmentManager {
                     e.printStackTrace();
                 }
             }
-        }, 5 * 60 * 20L, 5 * 60 * 20L);
+        }, config.getSyncInterval() * 20L, config.getSyncInterval() * 20L);
     }
 
     /**

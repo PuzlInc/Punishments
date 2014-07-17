@@ -35,7 +35,7 @@ public class Util {
         return DATE_FORMAT.format(new Date(time));
     }
 
-    public static long lengthToMiliseconds(String string) {
+    public static long lengthToSeconds(String string) {
         if (string.equals("0") || string.equals("")) return 0;
         String[] lifeMatch = new String[]{ "d", "h", "m", "s" };
         int[] lifeInterval = new int[]{ 86400, 3600, 60, 1 };
@@ -48,7 +48,11 @@ public class Util {
             }
 
         }
-        return seconds * 1000;
+        return seconds;
+    }
+
+    public static long lengthToMiliseconds(String string) {
+        return lengthToSeconds(string) * 1000;
     }
 
     public static String argsToString(String[] args, int start, int end) {
